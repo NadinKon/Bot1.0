@@ -2,7 +2,7 @@ import requests
 
 def weather():
     try:
-        params = {'q': 'Obinitsa', 'units': 'metric', 'lang': 'ru', 'appid': '1912624fd49c501f2986b6ff90fd4a0b'}
+        params = {'q': 'Obinitsa', 'units': 'metric', 'lang': 'ru', 'appid': '1912624fd49c501f2986b6ff90fd0b'}
         response = requests.get(f'https://api.openweathermap.org/data/2.5/weather', params=params)
         if not response:
             raise
