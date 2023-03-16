@@ -4,7 +4,7 @@ from aiogram.utils import executor
 from jokes import list_jokes
 from advice import list_advice
 
-bot = Bot(token='5904419244:AAHcSXUE7Gc07YA1PkB0ihKFzTa7TrhQVsg')
+bot = Bot(token='5904419244:*************zTa7TrhQVsg')
 dp = Dispatcher(bot)
 
 b1 = KeyboardButton('/Анекдотик')
