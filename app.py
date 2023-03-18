@@ -5,12 +5,13 @@ from jokes import list_jokes
 from advice import list_advice
 import openai
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
-
-OPENAI_API_KEY = os.environ.get('api')
+OPENAI_API_KEY = os.getenv('KEY')
 openai.api_key = OPENAI_API_KEY
 
-bot = Bot(token=os.environ.get('token'))
+bot = Bot(token=os.getenv('token'))
 dp = Dispatcher(bot)
 
 b1 = KeyboardButton('/Анекдотик')
