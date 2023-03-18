@@ -4,12 +4,13 @@ from aiogram.utils import executor
 from jokes import list_jokes
 from advice import list_advice
 import openai
+import os
 
 
-OPENAI_API_KEY = "sk-Wbd8O57drWTZ******************DgwyZTpnZAmQ"
+OPENAI_API_KEY = os.environ.get('api')
 openai.api_key = OPENAI_API_KEY
 
-bot = Bot(token='5904419244**************zTa7TrhQVsg')
+bot = Bot(token=os.environ.get('token'))
 dp = Dispatcher(bot)
 
 b1 = KeyboardButton('/Анекдотик')
