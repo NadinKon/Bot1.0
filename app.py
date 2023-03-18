@@ -3,8 +3,13 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.utils import executor
 from jokes import list_jokes
 from advice import list_advice
+import openai
 
-bot = Bot(token='5904419244:AAHcSXUE7Gc07YA1PkB0ihKFzTa7TrhQVsg')
+
+OPENAI_API_KEY = "sk-Wbd8O57drWTZ******************DgwyZTpnZAmQ"
+openai.api_key = OPENAI_API_KEY
+
+bot = Bot(token='5904419244**************zTa7TrhQVsg')
 dp = Dispatcher(bot)
 
 b1 = KeyboardButton('/Анекдотик')
@@ -19,7 +24,7 @@ kb_client.add(b1).row(b2, b3)
 @dp.message_handler(commands=['start', 'help'])
 async def command_start(message: types.Message):
     name = message.from_user.first_name
-    await bot.send_message(message.from_user.id, f'Привет {name}!', reply_markup=kb_client)
+    await bot.send_message(message.from_user.id, f'Привет {name}! Как я могу помочь?', reply_markup=kb_client)
     await message.delete()
 
 
@@ -41,9 +46,16 @@ async def menu_command(message : types.Message):
 
 @dp.message_handler()
 async def new_message(message: types.Message):
-    name = message.from_user.first_name
-    if message.text:
-        await message.answer('Я имею Вам кое-что сказать… Выбирай в меню!')
+
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt='Расскажи мне о ' + message.text + '?',
+        max_tokens=2048,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+    await message.answer(response["choices"][0]["text"])
 
 
 def register_handler_client(dp: Dispatcher):
