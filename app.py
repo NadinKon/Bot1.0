@@ -5,8 +5,8 @@ from jokes import list_jokes
 from advice import list_advice
 import openai
 import os
-from dotenv import load_dotenv
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
 
 OPENAI_API_KEY = os.environ.get('KEY')
 openai.api_key = OPENAI_API_KEY
